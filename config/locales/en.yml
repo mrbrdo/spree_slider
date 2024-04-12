@@ -12,6 +12,11 @@ en:
   y: 'Yes'
   n: 'No'
 
+  spree:
+    slides: "Slides"
+    all_slides: 'All Slides'
+    slide_locations: 'Slide Locations'
+
   activerecord:
     models:
       spree/slide: 'Slide'
