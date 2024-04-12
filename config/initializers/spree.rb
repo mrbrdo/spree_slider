@@ -17,8 +17,8 @@ Rails.application.config.after_initialize do
       .with_admin_ability_check(Spree::Slide)
       # Add items to the section
       .with_items([
-        Spree::Admin::MainMenu::ItemBuilder.new('all_slides', Spree::Core::Engine.routes.url_helpers.admin_slides_path).with_match_path('/slides').build,
-        Spree::Admin::MainMenu::ItemBuilder.new('slide_locations', Spree::Core::Engine.routes.url_helpers.admin_slide_locations_path).with_match_path('/slide_locations').build
+        Spree::Admin::MainMenu::ItemBuilder.new('spree_slider.config_name', Spree::Core::Engine.routes.url_helpers.admin_slides_path).with_match_path('/slides').build,
+        Spree::Admin::MainMenu::ItemBuilder.new('spree_slider_locations.config_name', Spree::Core::Engine.routes.url_helpers.admin_slide_locations_path).with_match_path('/slide_locations').build
 ])
       .build
   )
