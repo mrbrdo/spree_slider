@@ -12,14 +12,10 @@
 Rails.application.config.after_initialize do
   # Add a new 'subscriptions' section to the Spree admin main menu
   Rails.application.config.spree_backend.main_menu.add(
-    Spree::Admin::MainMenu::SectionBuilder.new("slides", 'file-slides-fill.svg')
-      # Only display this section if the user has the necessary admin abilities
-      .with_admin_ability_check(Spree::Slide)
-      # Add items to the section
-      .with_items([
-        Spree::Admin::MainMenu::ItemBuilder.new('all_slides', Spree::Core::Engine.routes.url_helpers.admin_slides_path).with_match_path('/slides').build,
-        Spree::Admin::MainMenu::ItemBuilder.new('slide_locations', Spree::Core::Engine.routes.url_helpers.admin_slide_locations_path).with_match_path('/slide_locations').build
-])
+    Spree::Admin::MainMenu::SectionBuilder.new("slides", 'file-slides-fill.svg').with_admin_ability_check(Spree::Slide).with_items([
+        Spree::Admin::MainMenu::ItemBuilder.new('spree_slider.config_name', Spree::Core::Engine.routes.url_helpers.admin_slides_path).with_match_path('/slides').build,
+        Spree::Admin::MainMenu::ItemBuilder.new('spree_slider_locations.config_name', Spree::Core::Engine.routes.url_helpers.admin_slide_locations_path).with_match_path('/slide_locations').build
+      ])
       .build
   )
 end
