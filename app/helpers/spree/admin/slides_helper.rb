@@ -17,7 +17,7 @@ module Spree
 
       def product_options_for_select(slide)
         if slide.product_id.present?
-          [Spree::Product.find(slide.product_id)]
+          Spree::Product.where(id: slide.product_id).to_a
         else
           []
         end
