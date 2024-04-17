@@ -14,6 +14,16 @@ module Spree
 
         return '----'
       end
+
+      def product_options_for_select(slide)
+        if slide.product_id.present?
+          [Spree::Product.find(slide.product_id)]
+        else
+          []
+        end
+
+      end
+
     end
   end
 end
