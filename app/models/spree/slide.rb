@@ -33,7 +33,7 @@ class Spree::Slide < ActiveRecord::Base
   end
 
   def slide_link
-    link_url.blank? && product.present? ? product : link_url
+    link_url.blank? && product.present? ? "/products/#{product.slug}?taxon_id=#{product.id}" : link_url
   end
 
   def slide_image
