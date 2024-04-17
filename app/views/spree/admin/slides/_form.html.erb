@@ -7,7 +7,7 @@
   </div>
 
   <div class="col-md-10">
-    <div class="field checkbox">
+    <div class="field checkbox mt-4">
       <label>
         <%= f.check_box :published, class: "form-control" %>
         <%= t(:published) %>
@@ -16,10 +16,11 @@
   </div>
 
   <div class="col-md-12">
-    <%= f.field_container :product_id do %>
-      <%= label_tag :product_id, t(:product) %><br>
-      <%= hidden_field_tag 'slide[product_id]', f.object.product_id.to_s, class: "product_picker fullwidth" %>
-    <% end %>
+  <%= f.field_container :product_id do %>
+    <%= f.label :product_id, t(:product) %><br>
+    <%= f.collection_select(:product_id, Spree::Product.all, :id, :name, { include_blank: Spree.t('match_choices.none') }, { class: 'select2', disabled: cannot?(:edit, Spree::Product) }) %>
+  <% end %>
+
   </div>
 
   <div class="col-md-6">
