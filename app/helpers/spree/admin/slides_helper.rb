@@ -24,6 +24,10 @@ module Spree
 
       end
 
+      def product_url(slug)
+        "/products/#{slug}"
+      end
+
     end
   end
 end
