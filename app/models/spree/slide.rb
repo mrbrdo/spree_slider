@@ -7,6 +7,8 @@ class Spree::Slide < ActiveRecord::Base
 
   belongs_to :product, touch: true, optional: true
 
+  acts_as_list
+
   has_one_attached :image
 
   validates :link_url, presence: true, url: true, unless: -> { product }
