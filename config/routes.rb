@@ -6,7 +6,11 @@ Spree::Core::Engine.routes.draw do
       end
     end
 
-    resources :slide_locations 
+    resources :slide_locations  do
+      collection do
+        post :update_slide_positions
+      end
+    end
   end
 
   namespace :api, defaults: { format: 'json' } do
