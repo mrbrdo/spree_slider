@@ -1,39 +1,41 @@
-// Added function for multiple table
-
 document.addEventListener('spree:load', function () {
-  var parentEl = document.getElementsByClassName('sortable')[1];
-  if (parentEl) {
-    var element = parentEl.querySelector('tbody');
-  }
-
-  if (element) {
-    Sortable.create(element, {
-      handle: '.move-handle',
-      animation: 550,
-      ghostClass: 'bg-light',
-      dragClass: 'sortable-drag-v',
-      easing: 'cubic-bezier(1, 0, 0, 1)',
-      swapThreshold: 0.9,
-      forceFallback: true,
-      onEnd: function (evt) {
-        var itemEl = evt.item;
-        var positions = { authenticity_token: AUTH_TOKEN };
-        $.each($('tr', element), function (position, obj) {
-          var reg = /spree_(\w+_?)+_(.*)/;
-          var parts = reg.exec($(obj).prop('id'));
-          if (parts) {
-            positions['positions[' + parts[2] + ']'] = position + 1;
-          }
-        });
-        $.ajax({
-          type: 'POST',
-          dataType: 'json',
-          url: $(itemEl).closest('table.sortable').data('sortable-link'),
-          data: positions,
-        });
-      },
-    });
+  const secondTable = document.querySelectorAll('.sortable')[1];
+  
+  if (secondTable) {
+    const tbody = secondTable.querySelector('tbody');
+    if (tbody) {
+      Sortable.create(tbody, {
+        handle: '.move-handle',
+        animation: 550,
+        ghostClass: 'bg-light',
+        dragClass: 'sortable-drag-v',
+        easing: 'cubic-bezier(1, 0, 0, 1)',
+        swapClass: 'dragTo',
+        forceFallback: true,
+        swapThreshold: 0.9,
+        onEnd: function (evt) {
+          const itemEl = evt.item;
+          const positions = { authenticity_token: AUTH_TOKEN };
+          const rows = Array.from(tbody.querySelectorAll('tr'));
+          const firstTableRows = document
+            .querySelectorAll('.sortable')[0]
+            .querySelectorAll('tr').length;
+          rows.forEach(function (row, index) {
+            const parts = row.id.match(/spree_(\w+_?)+_(.*)/);
+            if (parts) {
+              positions['positions[' + parts[2] + ']'] =
+                index + firstTableRows + 1;
+            }
+          });
+          $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: $(itemEl).closest('.sortable').data('sortable-link'),
+            data: positions,
+          });
+        },
+      });
+      
+    }
   }
 });
-
-
