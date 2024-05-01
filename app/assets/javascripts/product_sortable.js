@@ -1,17 +1,16 @@
 document.addEventListener('spree:load', function () {
-  const secondTable = document.querySelectorAll('.sortable')[1];
+  const secondTable = document.getElementsByTagName('table')[1];
   
   if (secondTable) {
-    const tbody = secondTable.querySelector('tbody');
+    const tbody = secondTable.getElementsByTagName('tbody')[0];
     if (tbody) {
       Sortable.create(tbody, {
         handle: '.move-handle',
         animation: 550,
         ghostClass: 'bg-light',
-        dragClass: 'sortable-drag-v',
+        dragClass: 'a',
         easing: 'cubic-bezier(1, 0, 0, 1)',
         swapClass: 'dragTo',
-        forceFallback: true,
         swapThreshold: 0.9,
         onEnd: function (evt) {
           const itemEl = evt.item;
