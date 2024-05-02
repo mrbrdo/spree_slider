@@ -36,7 +36,6 @@ class Spree::Slide < ActiveRecord::Base
   end
 
   def slide_link
-    binding.pry
     link_url.blank? && product.present? ? spree.api_v2_platform_product_path(product.id) : link_url
   end
 
