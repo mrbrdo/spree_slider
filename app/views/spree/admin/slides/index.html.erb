@@ -1,4 +1,6 @@
-<%= javascript_include_tag 'product_sortable' %>
+<% content_for :head do %>
+  <%= javascript_include_tag 'product_sortable' %>
+<% end %>
 
 <% content_for :page_actions do %>
   <%= button_link_to t('spree_slider.new_slide'), new_object_url, { class: 'btn-success', icon: 'add', id: 'admin_new_slide_link' } %>

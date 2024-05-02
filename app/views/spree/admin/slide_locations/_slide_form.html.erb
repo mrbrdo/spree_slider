@@ -51,7 +51,7 @@
           <%= f.label :image, t(:image) %> <i>(<%= t('spree_slider.image_tip') %>)</i><br>
           <%= f.file_field :image %>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 image-container">
           <% if f.object.image.attached? %>
             <p>
               <%= label_tag t(:preview) %>
