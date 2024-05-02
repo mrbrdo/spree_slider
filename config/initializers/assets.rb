@@ -1,1 +1,1 @@
-Rails.application.config.assets.precompile += %w( product_sortable.js )
+Rails.application.config.assets.precompile += %w( productSortable.js )
