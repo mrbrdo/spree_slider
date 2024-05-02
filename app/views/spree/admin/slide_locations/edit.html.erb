@@ -22,7 +22,7 @@
           <table class="table table-condensed sortable spree-location-table" data-hook data-sortable-link="<%= update_slide_positions_admin_slide_locations_url %>">
           <thead data-hook="slider_header">
             <tr>
-              <th>Slide</th>
+              <th><%= t('spree_slider.title') %></th>
               <th class="actions"></th>
             </tr>
           </thead>
@@ -42,7 +42,7 @@
             <tr>
               <td colspan="4">
                 <div id="new_add_slide" class="d-flex" data-hook>
-                  <%= button_link_to Spree.t(:add_slide), "javascript:;", { icon: 'add.svg', :'data-target' => "tbody#sortVert", class: 'btn-success mx-auto spree_add_fields px-2' } %>
+                  <%= button_link_to t("spree_slider_locations.add_slide"), "javascript:;", { icon: 'add.svg', :'data-target' => "tbody#sortVert", class: 'btn-success mx-auto spree_add_fields px-2' } %>
                 </div>
               </td>
             </tr>
