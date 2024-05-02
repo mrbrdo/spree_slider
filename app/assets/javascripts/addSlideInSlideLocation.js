@@ -19,6 +19,7 @@ function removeExistingSelects() {
       '.select2[data-select2-id]'
     );
 
+
     const imageContainer = tbodyTr.querySelector('.image-container');
 
     if(select2Elements){
@@ -36,16 +37,21 @@ function loadAutoComplete() {
 
   const tbodyTr = document.querySelector('tbody tr:last-child');
 
-  tbodyTr.classList.add('new_slide_element');
+  tbodyTr.classList.add('new-slide');
 
-  const slideItemsList = document.querySelectorAll('tbody .new_slide_element');
-  
+  tbodyTr.id = 'new_spree_slide_' + (Number(tbodyTr.rowIndex) + 1); 
+
+  const slideItemsList = document.querySelectorAll('tbody .new-slide');
+ 
+
   if (slideItemsList) {
     slideItemsList.forEach((slideItem) => {
-    
+
       const loadParamsElement = slideItem.querySelector(
         'select[data-autocomplete-url-value]'
       );
+
+      loadParamsElement.setAttribute('data-select2-id', loadParamsElement.id);
 
       buildParamsFromDataAttrs(loadParamsElement);
     });
