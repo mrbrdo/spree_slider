@@ -1,7 +1,6 @@
 class Spree::Slide < ActiveRecord::Base
   include Spree::Admin::SlidesHelper
   include Rails.application.routes.url_helpers
-  include Spree::Core::Engine.routes.url_helpers
 
 
   has_and_belongs_to_many :slide_locations,
@@ -38,7 +37,7 @@ class Spree::Slide < ActiveRecord::Base
   end
 
   def slide_link
-    link_url.blank? && product.present? ? spree.api_v2_platform_product_path(product.id) : link_url
+    link_url.blank? && product.present? ? product_url(product.slug) : link_url
   end
 
   def slide_image
