@@ -1,0 +1,7 @@
+  <div data-hook="admin_product">
+    <%= f.field_container :product_id do %>
+      <%= f.label :product_id, Spree.t(:product) %>
+          <%= f.select :product_id, options_from_collection_for_select(@slide.product_id.present? ? [@slide.product] :[], :id, :name, @slide.product_id),{ include_hidden: true },data: { autocomplete_url_value: 'products_api_v2',
+             autocomplete_return_attr_value: 'name'} %>
+    <% end %>
+  </div>
