@@ -2,10 +2,10 @@
 
 document.addEventListener('spree:load', function () {
   const parentEl = document.getElementsByClassName('sortable')[1];
-  let element
+  let element;
 
   if (parentEl) {
-     element = parentEl.querySelector('tbody');
+    element = parentEl.querySelector('tbody');
   }
 
   if (element) {
@@ -37,5 +37,3 @@ document.addEventListener('spree:load', function () {
     });
   }
 });
-
-
