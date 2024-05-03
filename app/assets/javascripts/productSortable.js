@@ -1,9 +1,11 @@
 // Added function for multiple table
 
 document.addEventListener('spree:load', function () {
-  var parentEl = document.getElementsByClassName('sortable')[1];
+  const parentEl = document.getElementsByClassName('sortable')[1];
+  let element
+
   if (parentEl) {
-    var element = parentEl.querySelector('tbody');
+     element = parentEl.querySelector('tbody');
   }
 
   if (element) {
@@ -16,11 +18,11 @@ document.addEventListener('spree:load', function () {
       swapThreshold: 0.9,
       forceFallback: true,
       onEnd: function (evt) {
-        var itemEl = evt.item;
-        var positions = { authenticity_token: AUTH_TOKEN };
+        const itemEl = evt.item;
+        const positions = { authenticity_token: AUTH_TOKEN };
         $.each($('tr', element), function (position, obj) {
-          var reg = /spree_(\w+_?)+_(.*)/;
-          var parts = reg.exec($(obj).prop('id'));
+          const reg = /spree_(\w+_?)+_(.*)/;
+          const parts = reg.exec($(obj).prop('id'));
           if (parts) {
             positions['positions[' + parts[2] + ']'] = position + 1;
           }
