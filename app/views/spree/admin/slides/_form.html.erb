@@ -6,21 +6,17 @@
     <% end %>
   </div>
 
-  <div class="col-md-10">
-    <div class="field checkbox">
-      <label>
-        <%= f.check_box :published, class: "form-control" %>
-        <%= t(:published) %>
-      </label>
+  <div class="col-md-10 d-flex align-items-center mt-2">
+    <div class="field checkbox d-flex align-items-center mt-2">
+        <%= f.check_box :published, class: "w-auto mr-2 cursor-pointer" %>
+        <%= f.label :published, t(:published), class: 'mb-0' %>
     </div>
   </div>
 
-  <div class="col-md-12">
-    <%= f.field_container :product_id do %>
-      <%= label_tag :product_id, t(:product) %><br>
-      <%= hidden_field_tag 'slide[product_id]', f.object.product_id.to_s, class: "product_picker fullwidth" %>
-    <% end %>
-  </div>
+
+ <div class="col-md-12">
+    <%= render 'spree/admin/slides/add_product', f: f %>
+  </div> 
 
   <div class="col-md-6">
     <%= f.field_container :name do %>

@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'addSlideInSlideLocation' %>
+<% end %>
+
 <% content_for :page_title do %>
   <%= t('spree_slider_locations.editing_location') %>
 <% end %>
@@ -6,14 +10,48 @@
   <%= button_link_to t('spree_slider_locations.back_to_locations'), spree.admin_slide_locations_path, icon: 'arrow-left' %>
 <% end %>
 
-<%# render 'spree/shared/error_messages', target: @slide_location %>
+<% render partial: 'spree/admin/shared/error_messages', locals: { target: @slide_location } %>
 
 <%= form_for [:admin, @slide_location] do |f| %>
-  <fieldset class="no-border-top">
-    <%= render partial: 'form', locals: { f: f } %>
-
-    <div data-hook="admin_slider_locations_method_edit_form_buttons">
+  <div class="card mb-3">
+    <div class="card-body">
+      <%= render partial: 'form', locals: { f: f } %>
+      
+      <div class="border rounded bg-white">
+          <table class="table table-condensed sortable spree-location-table" data-hook data-sortable-link="<%= update_slide_positions_admin_slide_locations_url %>">
+          <thead data-hook="slider_header">
+            <tr>
+              <th><%= t('spree_slider.title') %></th>
+              <th class="actions"></th>
+            </tr>
+          </thead>
+          <tbody id="sortVert">
+            <% if @slide_location.slides.empty? %>
+               <tr id="none" data-hook="option_none">
+                  <td colspan="2"><%= Spree.t(:none) %></td>
+                  <td class="actions text-center"></td>
+                </tr>
+            <% else %>
+              <%= f.fields_for :slides do |slide_form| %>
+                <%= render partial: 'slide_form', locals: { f: slide_form } %>
+              <% end %>
+            <% end %>
+           </tbody>
+           <tfoot>
+            <tr>
+              <td colspan="4">
+                <div id="new_add_slide" class="d-flex" data-hook>
+                  <%= button_link_to t("spree_slider_locations.add_slide"), "javascript:;", { icon: 'add.svg', :'data-target' => "tbody#sortVert", class: 'btn-success mx-auto spree_add_fields px-2' } %>
+                </div>
+              </td>
+            </tr>
+          </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
       <%= render partial: 'spree/admin/shared/edit_resource_links' %>
     </div>
-  </fieldset>
+  </div>
 <% end %>

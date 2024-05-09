@@ -1,0 +1,64 @@
+<tr class="slide px-0" id="spree_<%= dom_id(f.object) %>" data-hook>
+  <td class="px-0 w-100">
+    <div class="w-100">
+      <div class="move-handle d-flex justify-content-between align-items-center px-3">
+        <%= svg_icon name: "grip-vertical.svg", width: '18', height: '18' %>
+        <%= link_to_icon_remove_fields f %>
+      </div>
+      <hr/>
+      <div class="row px-3">
+        <div class="col-md-3">
+          <%= f.label :position, t(:position) %>
+          <%= f.number_field :position, class: 'fullwidth form-control' %>
+        </div>
+        <div class="col-md-2 d-flex align-items-center mt-2">
+          <div class="field checkbox d-flex align-items-center mt-4">
+             <%= f.check_box :published, class: "w-auto mr-2 cursor-pointer" %>
+             <%= f.label :published, t(:published), class: 'mb-0' %>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div class="row px-3">
+        <div class="col-md-12">
+          <%= f.label :product_id, Spree.t(:product) %>
+          <%= f.select :product_id, options_from_collection_for_select(f.object.product.present? ? [f.object.product] : [], :id, :name, f.object.product_id.present? ? f.object.product_id : nil), { include_hidden: true }, data: { autocomplete_url_value: 'products_api_v2', autocomplete_return_attr_value: 'name'} %>
+        </div>
+      </div>
+      <hr/>
+      <div class="row px-3">
+        <div class="col-md-6">
+          <%= f.label :name, t(:name) %><br>
+          <%= f.text_field :name, class: 'fullwidth form-control', placeholder: t('spree_slider.placeholder_name') %>
+        </div>
+        <div class="col-md-6">
+          <%= f.label :link_url, t(:link_url) %><br>
+          <%= f.text_field :link_url, class: 'fullwidth form-control', placeholder: t('spree_slider.placeholder_link_url') %>
+        </div>
+      </div>
+      <hr/>
+      <div class="row px-3">
+        <div class="col-md-12">
+          <%= f.label :body, t(:body) %><br>
+          <%= f.text_area :body, { cols: 60, rows: 4, class: 'fullwidth form-control' } %>
+        </div>
+      </div>
+      <hr/>
+      <div class="row px-3">
+        <div class="col-md-6">
+          <%= f.label :image, t(:image) %> <i>(<%= t('spree_slider.image_tip') %>)</i><br>
+          <%= f.file_field :image %>
+        </div>
+        <div class="col-md-6 image-container">
+          <% if f.object.image.attached? %>
+            <p>
+              <%= label_tag t(:preview) %>
+              <br>
+              <%= image_tag main_app.url_for(f.object.thumbnail), class: 'img-responsive' %>
+            </p>
+          <% end %> 
+        </div>
+      </div>
+    </div>
+  </td>
+</tr>

@@ -14,6 +14,20 @@ module Spree
 
         return '----'
       end
+
+      def product_options_for_select(slide)
+        if slide.product_id.present?
+          [slide.product]
+        else
+          []
+        end
+
+      end
+
+      def product_url(slug)
+        "/products/#{slug}"
+      end
+
     end
   end
 end
