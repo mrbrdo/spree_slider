@@ -52,11 +52,11 @@
 
   <div class="col-md-6">
     <%= f.field_container :image do %>
-      <% if f.object.image.attached? %>
+      <% if f.object.image.attached? && !f.object.new_record? %>
         <p>
           <%= label_tag t(:preview) %>
           <br>
-          <%= image_tag main_app.url_for(f.object.thumbnail), class: 'img-responsive' %>
+          <%= image_tag main_app.cdn_image_url(f.object.thumbnail), class: 'img-responsive' %>
         </p>
       <% end %>
     <% end %>
