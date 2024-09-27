@@ -14,7 +14,7 @@ class Spree::Slide < ActiveRecord::Base
   has_one_attached :image
 
   validates :link_url, presence: true, url: true, unless: -> { product }
-  validates :name, :image, presence: true, unless: -> { product }
+  validates :image, presence: true, unless: -> { product }
   validates :image, content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']
 
   scope :published, -> { where(published: true).order('position ASC') }
